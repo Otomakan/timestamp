@@ -6,7 +6,7 @@ var monthNames = ["January", "February", "March", "April", "May", "June",
 
 var monthNamesShort = ['Jan', 'Feb', "Mar", "Apr","May","June", "July", "Aug", "Sept","Oct","Nov", "Dec"];
 
-app.get(/[1-9]{5}/, function (req, res){
+app.get(/[1-9]{5}[^A-Za-z]/, function (req, res){
     var result = {};
     var input = req.originalUrl.split('')
     input.shift()
@@ -54,6 +54,10 @@ app.get(/^[/](([0-2][0-9])|[1-9])([%]20|[-])(January|Jan|Feb|Mar|Apr|Aug|Sept|Pc
 
 app.get('/', function(req, res){
     res.send( 'Hello world. this is the time Stamp appplication I developped. to use it simply add a unix date in the path or a normal date and we will translate it for you into a JSON object')
+})
+
+app.get('*', function(req, res){
+    res.send({natural:null, unix:null});
 })
 
 app.listen(process.env.PORT || 5000,function(){
