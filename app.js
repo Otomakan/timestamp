@@ -18,7 +18,9 @@ app.get(/[1-9]/, function (req, res){
     res.send(result);
 })
 
-// app.get(/)
+app.get('/', function(req, res){
+    res.send( 'Hello world')
+})
 
 app.listen(8080,function(){
     console.log('example app listening on port 8080');
